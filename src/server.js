@@ -1,19 +1,14 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
-require('dotenv').config();
-
+const configViewEngine = require('./config/viewEngine');
 
 const app = express();
 const port = process.env.PORT || 8080;
 const hostname = process.env.HOST_NAME || 'localhost'
 
-
 // config template engine
-app.set('view engine', 'ejs')
-app.set('views', path.join(__dirname, 'views'))
-
-// config static file
-app.use(express.static(path.join(__dirname, 'public')))
+configViewEngine(app);
 
 app.get('/', (req, res) => {
     res.send('Hello World!')

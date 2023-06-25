@@ -1,3 +1,4 @@
+const connection = require('../config/database');
 
 const getHomePage = (req, res) => {
     res.send('Hello World!')

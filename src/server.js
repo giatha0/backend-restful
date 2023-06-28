@@ -8,6 +8,10 @@ const app = express();
 const port = process.env.PORT || 8080;
 const hostname = process.env.HOST_NAME || 'localhost'
 
+// config req.body
+app.use(express.json()); // for parsing application/json
+app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
 // config template engine
 configViewEngine(app);
 
@@ -15,8 +19,6 @@ configViewEngine(app);
 app.use('/', webRoutes);
 
 // test connection
-
-
 
 connection.query(
     'SELECT * FROM Users ',

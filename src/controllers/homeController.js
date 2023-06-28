@@ -8,6 +8,11 @@ const getThao = (req, res) => {
     res.render('sample')
 }
 
+const postCreateUser = (req, res) => {
+    res.send('create user')
+    console.log(req.body)
+}
+
 module.exports = {
-    getHomePage, getThao
+    getHomePage, getThao, postCreateUser
 }

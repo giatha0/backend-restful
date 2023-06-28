@@ -42,14 +42,13 @@
                         <%= user.city %>
                     </td>
                     <td>
-                        <button class="table-button a">Edit</button>
+                        <button class="table-button a">
+                            <a class="table-a" href="/get-update-user/<%= user.id %>">Update</a>
+                        </button>
                         <button class="table-button b">Delete</button>
                     </td>
                 </tr>
                 <% }) %>
-
-
-
         </table>
     </div>
 

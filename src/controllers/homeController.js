@@ -33,10 +33,18 @@ const postCreateUser = async (req, res) => {
     );
     console.log('results', results); // results contains rows returned by server
     res.redirect('/');
+}
 
-
+const getUpdateUser = async (req, res) => {
+    let { id } = req.params;
+    let [results, fields] = await connection.execute(
+        'SELECT * FROM Users WHERE id = ?',
+        [id]
+    );
+    console.log('results', results); // results contains rows returned by server
+    return res.render('update.ejs', { user: results[0] });
 }
 
 module.exports = {
-    getHomePage, getThao, postCreateUser, getCreateUser
+    getHomePage, getThao, postCreateUser, getCreateUser, getUpdateUser
 }

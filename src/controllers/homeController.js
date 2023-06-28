@@ -18,20 +18,11 @@ const getCreateUser = (req, res) => {
 const postCreateUser = async (req, res) => {
     let { email, name, city } = req.body;
 
-    // connection.query(
-    //     'INSERT INTO Users(email, name, city) VALUES(?, ?, ?)',
-    //     [email, name, city],
-    //     function (err, results) {
-    //         if (err) throw err;
-    //         console.log('results', results); // results contains rows returned by server
-    //         res.redirect('/');
-    //     }
-    // )
     let [results, fields] = await connection.execute(
         'INSERT INTO Users(email, name, city) VALUES(?, ?, ?)',
         [email, name, city]
     );
-    console.log('results', results); // results contains rows returned by server
+    console.log('results', results);
     res.redirect('/');
 }
 
@@ -41,6 +32,38 @@ const getUpdateUser = async (req, res) => {
     return res.render('update.ejs', { user: results[0] || {} });
 }
 
+const postUpdateUser = async (req, res) => {
+    let email = req.body.email;
+    let name = req.body.name;
+    let city = req.body.city;
+    let id = req.body.id;
+
+    console.log(email, name, city, id);
+    let [results, fields] = await connection.execute(
+        'UPDATE Users SET email = ?, name = ?, city = ? WHERE id = ?',
+        [email, name, city, id]
+    );
+    console.log('results', results);
+    res.redirect('/');
+}
+
+const getDeleteUser = async (req, res) => {
+    let { id } = req.params;
+    let results = await CRUDservices.getUserById(id);
+    console.log('results', results);
+    res.render('delete.ejs', { user: results[0] || {} });
+}
+
+const postDeleteUser = async (req, res) => {
+    let id = req.body.id;
+
+    let results = await CRUDservices.deleteUserById(id);
+    console.log('results', results);
+    res.redirect('/');
+}
+
+
 module.exports = {
-    getHomePage, getThao, postCreateUser, getCreateUser, getUpdateUser
+    getHomePage, getThao, postCreateUser, getCreateUser, getUpdateUser,
+    postUpdateUser, getDeleteUser, postDeleteUser
 }

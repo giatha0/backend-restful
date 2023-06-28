@@ -42,15 +42,22 @@
                         <%= user.city %>
                     </td>
                     <td>
+
                         <button class="table-button a">
                             <a class="table-a" href="/get-update-user/<%= user.id %>">Update</a>
                         </button>
-                        <button class="table-button b">Delete</button>
+                        <!-- <form action="/delete-user/<%= user.id %>" method="post">
+                            <button class="table-button">Delete</button>
+                        </form> -->
+                        <button class="table-button b">
+                            <a class="table-a " href="/get-delete-user/<%= user.id %>">Delete</a>
+                        </button>
                     </td>
                 </tr>
                 <% }) %>
         </table>
     </div>
+
 
 </body>
 

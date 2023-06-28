@@ -17,7 +17,16 @@ const getUserById = async (id) => {
     return results;
 }
 
+const deleteUserById = async (id) => {
+    let [results, fields] = await connection.execute(
+        'DELETE FROM Users WHERE id = ?',
+        [id]
+    );
+
+    return results;
+}
+
 
 module.exports = {
-    getAllUsers, getUserById
+    getAllUsers, getUserById, deleteUserById
 }

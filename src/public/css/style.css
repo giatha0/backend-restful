@@ -66,3 +66,31 @@
   color: black;
 }
 
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {background-color: #ccc;}
+
+.table-container {
+  padding: 15px 20px;
+}
+
+.table-title {
+  margin-bottom: 10px;
+}
+
+.table-button {
+  padding: 5px ;
+}
+
+.table-button, .a {
+  margin-right: 10px;
+}

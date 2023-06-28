@@ -6,6 +6,8 @@ router.get('/', homeController.getHomePage);
 
 router.get('/thao', homeController.getThao);
 
+router.get('/get-create-user', homeController.getCreateUser);
+
 router.post('/create-user', homeController.postCreateUser);
 
 module.exports = router;

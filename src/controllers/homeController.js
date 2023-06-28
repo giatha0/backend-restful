@@ -9,8 +9,17 @@ const getThao = (req, res) => {
 }
 
 const postCreateUser = (req, res) => {
-    res.send('create user')
-    console.log(req.body)
+    let { email, name, city } = req.body;
+
+    connection.query(
+        'INSERT INTO Users(email, name, city) VALUES(?, ?, ?)',
+        [email, name, city],
+        function (err, results) {
+            if (err) throw err;
+            console.log('results', results); // results contains rows returned by server
+            res.send('Create user successfully')
+        }
+    )
 }
 
 module.exports = {

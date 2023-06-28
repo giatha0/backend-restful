@@ -8,6 +8,16 @@ const getAllUsers = async () => {
     return results;
 }
 
+const getUserById = async (id) => {
+    let [results, fields] = await connection.execute(
+        'SELECT * FROM Users WHERE id = ?',
+        [id]
+    );
+
+    return results;
+}
+
+
 module.exports = {
-    getAllUsers
+    getAllUsers, getUserById
 }

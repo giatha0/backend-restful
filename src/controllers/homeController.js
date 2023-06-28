@@ -37,12 +37,8 @@ const postCreateUser = async (req, res) => {
 
 const getUpdateUser = async (req, res) => {
     let { id } = req.params;
-    let [results, fields] = await connection.execute(
-        'SELECT * FROM Users WHERE id = ?',
-        [id]
-    );
-    console.log('results', results); // results contains rows returned by server
-    return res.render('update.ejs', { user: results[0] });
+    let results = await CRUDservices.getUserById(id);
+    return res.render('update.ejs', { user: results[0] || {} });
 }
 
 module.exports = {

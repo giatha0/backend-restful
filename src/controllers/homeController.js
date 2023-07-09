@@ -3,8 +3,6 @@ const CRUDservices = require('../services/CRUDservices');
 const User = require('../models/user');
 
 const getHomePage = async (req, res) => {
-    // let results = await CRUDservices.getAllUsers();
-    // console.log('results', results); // results contains rows returned by server
     let results = await User.find();
     return res.render('home.ejs', { users: results })
 }
@@ -46,15 +44,14 @@ const postUpdateUser = async (req, res) => {
 
 const getDeleteUser = async (req, res) => {
     let { id } = req.params;
-    let results = await CRUDservices.getUserById(id);
+    let results = await User.findById(id).exec();
     console.log('results', results);
-    res.render('delete.ejs', { user: results[0] || {} });
+    res.render('delete.ejs', { user: results || {} });
 }
 
 const postDeleteUser = async (req, res) => {
     let id = req.body.id;
-
-    let results = await CRUDservices.deleteUserById(id);
+    let results = await User.deleteOne({ _id: id });
     console.log('results', results);
     res.redirect('/');
 }

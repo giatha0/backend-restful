@@ -3,8 +3,9 @@ const CRUDservices = require('../services/CRUDservices');
 const User = require('../models/user');
 
 const getHomePage = async (req, res) => {
-    let results = await CRUDservices.getAllUsers();
-    console.log('results', results); // results contains rows returned by server
+    // let results = await CRUDservices.getAllUsers();
+    // console.log('results', results); // results contains rows returned by server
+    let results = await User.find();
     return res.render('home.ejs', { users: results })
 }
 

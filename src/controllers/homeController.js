@@ -27,8 +27,9 @@ const postCreateUser = async (req, res) => {
 
 const getUpdateUser = async (req, res) => {
     let { id } = req.params;
-    let results = await CRUDservices.getUserById(id);
-    return res.render('update.ejs', { user: results[0] || {} });
+    let results = await User.findById(id).exec();
+    console.log('results', results);
+    return res.render('update.ejs', { user: results || {} });
 }
 
 const postUpdateUser = async (req, res) => {
@@ -38,11 +39,8 @@ const postUpdateUser = async (req, res) => {
     let id = req.body.id;
 
     console.log(email, name, city, id);
-    let [results, fields] = await connection.execute(
-        'UPDATE Users SET email = ?, name = ?, city = ? WHERE id = ?',
-        [email, name, city, id]
-    );
-    console.log('results', results);
+    await User.updateOne({ _id: id }, { email, name, city });
+
     res.redirect('/');
 }
 

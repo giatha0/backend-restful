@@ -9,4 +9,10 @@ routerAPI.get('/', (req, res) => {
 
 routerAPI.get('/users', apiController.getUsersAPI);
 
+routerAPI.post('/users', apiController.postCreateUser);
+
+routerAPI.put('/users', apiController.putUpdateUser);
+
+routerAPI.delete('/users', apiController.deleteUser);
+
 module.exports = routerAPI;

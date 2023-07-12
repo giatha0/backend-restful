@@ -102,7 +102,20 @@ const deleteCustomer = async (req, res) => {
     })
 }
 
+const deleteManyCustomers = async (req, res) => {
+    let ids = req.body.customerId;
+    // console.log('ids', ids);
+    let results = await customerService.deleteManyCustomers(ids);
+    console.log('results', results);
+    return res.status(200).json({
+        EC: 0,
+        EM: 'Delete customers successfully',
+        data: results
+    })
+}
+
 module.exports = {
     postCreateCustomer, postCreateManyCustomers,
-    getCustomers, putUpdateCustomer, deleteCustomer
+    getCustomers, putUpdateCustomer, deleteCustomer,
+    deleteManyCustomers
 }

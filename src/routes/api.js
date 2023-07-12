@@ -21,5 +21,6 @@ routerAPI.post('/customers-many', customerController.postCreateManyCustomers);
 routerAPI.get('/customers', customerController.getCustomers);
 routerAPI.put('/customers', customerController.putUpdateCustomer);
 routerAPI.delete('/customers', customerController.deleteCustomer);
+routerAPI.delete('/customers-many', customerController.deleteManyCustomers);
 
 module.exports = routerAPI;

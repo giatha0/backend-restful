@@ -54,6 +54,18 @@ const getCustomers = async () => {
     }
 }
 
+const updateCustomer = async (id, customerData) => {
+    try {
+        let results = await Customer.findByIdAndUpdate(id, customerData);
+        console.log('results', results);
+        return results;
+    } catch (error) {
+        console.log(error);
+        return false;
+    }
+}
+
+
 module.exports = {
-    createCustomer, createManyCustomers, getCustomers
+    createCustomer, createManyCustomers, getCustomers, updateCustomer
 }

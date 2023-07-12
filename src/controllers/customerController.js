@@ -59,8 +59,33 @@ const getCustomers = async (req, res) => {
     })
 }
 
+const putUpdateCustomer = async (req, res) => {
+    const { id, name, email, address } = req.body;
+    let customerData = {
+        name, email, address
+    }
+    console.log('customerData', customerData);
+    if (!req.body) {
+        return res.status(400).send({
+            EC: 1,
+            message: "Data to update can not be empty!"
+        });
+
+    }
+    // console.log('customerData', customerData, id);
+
+    let customer = await customerService.updateCustomer(id, customerData);
+    console.log('customer', customer);
+    return res.status(200).json({
+        EC: 0,
+        EM: "Update customer successfully",
+        data: customer
+    })
+
+}
+
 
 module.exports = {
     postCreateCustomer, postCreateManyCustomers,
-    getCustomers
+    getCustomers, putUpdateCustomer
 }

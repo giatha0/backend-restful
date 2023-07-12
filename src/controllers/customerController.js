@@ -27,8 +27,23 @@ const postCreateCustomer = async (req, res) => {
     })
 }
 
+const postCreateManyCustomers = async (req, res) => {
+    let customers = req.body.customers;
+    console.log('customers', customers);
+
+    // validate
+
+    // excute
+    let results = await customerService.createManyCustomers(customers);
+    return res.status(200).json({
+        EM: results.EM,
+        data: results.results,
+        countSuccess: results.countSuccess
+    })
+}
+
 
 
 module.exports = {
-    postCreateCustomer
+    postCreateCustomer, postCreateManyCustomers
 }

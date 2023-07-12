@@ -22,7 +22,30 @@ const createCustomer = async (customerData) => {
 
 }
 
+const createManyCustomers = async (customers) => {
+    try {
+        let results = await Customer.insertMany(customers);
+        let countSuccess = results.length;
+        console.log('countSuccess', countSuccess);
+
+        return {
+            status: 200,
+            EM: 'Create customers successfully',
+            results: results,
+            countSuccess: countSuccess,
+
+        };
+    } catch (error) {
+        console.log(error);
+        return {
+            status: 500,
+            EM: 'Internal Server Error'
+        }
+    }
+}
+
+
 
 module.exports = {
-    createCustomer
+    createCustomer, createManyCustomers
 }

@@ -44,8 +44,16 @@ const createManyCustomers = async (customers) => {
     }
 }
 
-
+const getCustomers = async () => {
+    try {
+        let results = await Customer.find({});
+        return results;
+    } catch (error) {
+        console.log(error);
+        return false;
+    }
+}
 
 module.exports = {
-    createCustomer, createManyCustomers
+    createCustomer, createManyCustomers, getCustomers
 }

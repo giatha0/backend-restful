@@ -24,4 +24,6 @@ routerAPI.post('/customers', customerController.postCreateCustomer);
 
 routerAPI.post('/customers-many', customerController.postCreateManyCustomers);
 
+routerAPI.get('/customers', customerController.getCustomers);
+
 module.exports = routerAPI;

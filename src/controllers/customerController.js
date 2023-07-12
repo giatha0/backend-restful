@@ -42,8 +42,25 @@ const postCreateManyCustomers = async (req, res) => {
     })
 }
 
+const getCustomers = async (req, res) => {
+    let customers = await customerService.getCustomers();
+
+    if (!customers) {
+        return res.status(500).json({
+            EC: 1,
+            EM: 'Internal Server Error'
+        })
+    }
+
+    return res.status(200).json({
+        EC: 0,
+        EM: 'Get customers successfully',
+        data: customers
+    })
+}
 
 
 module.exports = {
-    postCreateCustomer, postCreateManyCustomers
+    postCreateCustomer, postCreateManyCustomers,
+    getCustomers
 }

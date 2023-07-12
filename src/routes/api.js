@@ -9,23 +9,17 @@ routerAPI.get('/', (req, res) => {
 
 
 routerAPI.get('/users', apiController.getUsersAPI);
-
 routerAPI.post('/users', apiController.postCreateUser);
-
 routerAPI.put('/users', apiController.putUpdateUser);
-
 routerAPI.delete('/users', apiController.deleteUser);
 
 routerAPI.post('/file', apiController.postUploadFile);
-
 routerAPI.post('/files', apiController.postUploadMultipleFiles);
 
 routerAPI.post('/customers', customerController.postCreateCustomer);
-
 routerAPI.post('/customers-many', customerController.postCreateManyCustomers);
-
 routerAPI.get('/customers', customerController.getCustomers);
-
 routerAPI.put('/customers', customerController.putUpdateCustomer);
+routerAPI.delete('/customers', customerController.deleteCustomer);
 
 module.exports = routerAPI;

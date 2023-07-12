@@ -55,7 +55,8 @@ const getCustomers = async (req, res) => {
     return res.status(200).json({
         EC: 0,
         EM: 'Get customers successfully',
-        data: customers
+        count: customers.count,
+        data: customers.results
     })
 }
 
@@ -84,8 +85,24 @@ const putUpdateCustomer = async (req, res) => {
 
 }
 
+const deleteCustomer = async (req, res) => {
+    const { id } = req.body;
+    // console.log('id', id);
+    let customer = await customerService.deleteCustomer(id);
+    if (!customer) {
+        return res.status(500).json({
+            EC: 1,
+            EM: 'Internal Server Error'
+        })
+    }
+    return res.status(200).json({
+        EC: 0,
+        EM: 'Delete customer successfully',
+        data: customer
+    })
+}
 
 module.exports = {
     postCreateCustomer, postCreateManyCustomers,
-    getCustomers, putUpdateCustomer
+    getCustomers, putUpdateCustomer, deleteCustomer
 }

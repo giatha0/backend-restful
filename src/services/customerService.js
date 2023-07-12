@@ -47,7 +47,9 @@ const createManyCustomers = async (customers) => {
 const getCustomers = async () => {
     try {
         let results = await Customer.find({});
-        return results;
+        // let results = await Customer.find({ deleted: false || undefined });
+        let count = results.length;
+        return { results, count };
     } catch (error) {
         console.log(error);
         return false;
@@ -65,7 +67,19 @@ const updateCustomer = async (id, customerData) => {
     }
 }
 
+const deleteCustomer = async (id) => {
+    try {
+        let results = await Customer.deleteById({ _id: id });
+        // console.log('results', results);
+        return results;
+    } catch (error) {
+        console.log(error);
+        return false;
+    }
+}
+
 
 module.exports = {
-    createCustomer, createManyCustomers, getCustomers, updateCustomer
+    createCustomer, createManyCustomers, getCustomers, updateCustomer,
+    deleteCustomer
 }

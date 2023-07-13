@@ -44,9 +44,17 @@ const createManyCustomers = async (customers) => {
     }
 }
 
-const getCustomers = async () => {
+const getCustomers = async (limit, page) => {
     try {
-        let results = await Customer.find({});
+        let results = null;
+        if (limit && page) {
+            results = await Customer.find()
+                .limit(limit)
+                .skip((page - 1) * limit);
+        } else {
+            results = await Customer.find({});
+        }
+
         // let results = await Customer.find({ deleted: false || undefined });
         let count = results.length;
         return { results, count };

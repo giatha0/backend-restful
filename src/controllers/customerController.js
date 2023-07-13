@@ -1,5 +1,5 @@
 const fileService = require('../services/fileService');
-const customerService = require('../services/customerService');
+const customerService = require('../services/customerService.js');
 
 const postCreateCustomer = async (req, res) => {
     let { name, address, phone, email, description } = req.body;
@@ -43,7 +43,16 @@ const postCreateManyCustomers = async (req, res) => {
 }
 
 const getCustomers = async (req, res) => {
-    let customers = await customerService.getCustomers();
+    let limit = req.query.limit;
+    let page = req.query.page;
+    let customers = null;
+    if (limit && page) {
+        // console.log('limit', limit, 'page', page);
+        customers = await customerService.getCustomers(limit, page);
+    } else {
+        customers = await customerService.getCustomers();
+    }
+    // customers = await customerService.getCustomers();
 
     if (!customers) {
         return res.status(500).json({

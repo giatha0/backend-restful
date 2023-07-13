@@ -1,4 +1,5 @@
 const Customer = require('../models/customer');
+const aqp = require('api-query-params');
 
 const createCustomer = async (customerData) => {
     console.log('customerData', customerData);
@@ -44,18 +45,22 @@ const createManyCustomers = async (customers) => {
     }
 }
 
-const getCustomers = async (limit, page) => {
+const getCustomers = async (limit, page, name, queryString) => {
     try {
         let results = null;
+
         if (limit && page) {
-            results = await Customer.find()
+            const { filter } = aqp(queryString);
+            delete filter.page;
+            console.log('filter', filter);
+            results = await Customer.find(filter)
                 .limit(limit)
                 .skip((page - 1) * limit);
+
         } else {
             results = await Customer.find({});
         }
 
-        // let results = await Customer.find({ deleted: false || undefined });
         let count = results.length;
         return { results, count };
     } catch (error) {

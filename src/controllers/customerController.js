@@ -1,6 +1,8 @@
 const fileService = require('../services/fileService');
 const customerService = require('../services/customerService.js');
 
+
+
 const postCreateCustomer = async (req, res) => {
     let { name, address, phone, email, description } = req.body;
     let image = '';
@@ -43,12 +45,14 @@ const postCreateManyCustomers = async (req, res) => {
 }
 
 const getCustomers = async (req, res) => {
+
     let limit = req.query.limit;
     let page = req.query.page;
+    let name = req.query.name;
     let customers = null;
     if (limit && page) {
         // console.log('limit', limit, 'page', page);
-        customers = await customerService.getCustomers(limit, page);
+        customers = await customerService.getCustomers(limit, page, name, req.query);
     } else {
         customers = await customerService.getCustomers();
     }

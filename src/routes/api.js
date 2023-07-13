@@ -23,4 +23,14 @@ routerAPI.put('/customers', customerController.putUpdateCustomer);
 routerAPI.delete('/customers', customerController.deleteCustomer);
 routerAPI.delete('/customers-many', customerController.deleteManyCustomers);
 
+routerAPI.get('/infor', (req, res) => {
+    console.log('req', req.query);
+    return res.send('Hello World!');
+})
+
+routerAPI.get('/infor/:id', (req, res) => {
+    console.log('req', req.params);
+    return res.send('Hello World!');
+})
+
 module.exports = routerAPI;

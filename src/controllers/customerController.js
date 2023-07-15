@@ -1,10 +1,35 @@
 const fileService = require('../services/fileService');
 const customerService = require('../services/customerService.js');
-
+const joi = require('joi');
 
 
 const postCreateCustomer = async (req, res) => {
     let { name, address, phone, email, description } = req.body;
+
+    const schema = Joi.object({
+        name: Joi.string()
+            .alphanum()
+            .min(3)
+            .max(30)
+            .required(),
+
+
+        phone: Joi.String.pattern(new RegExp('^[0-9]{10}$')),
+
+        email: Joi.string().email(),
+
+        description: Joi.String()
+    })
+
+    const { error } = schema.validate(req.body);
+
+    if (error) {
+        return res.status(400).json({
+            message: 'validate fail',
+            error: error.details[0].message
+        })
+    }
+
     let image = '';
     let customerData = {};
     let file = req.files;

@@ -28,6 +28,17 @@ const createProject = async (data) => {
     return myProject;
 }
 
+const getProjectsService = async (page, limit) => {
+    const projects = await Project.find({})
+        .skip((page - 1) * limit)
+        .limit(limit)
+        .populate("userInfor")
+        .exec();
+
+    // console.log('projects', projects);
+    return { projects, total: projects.length };
+}
+
 module.exports = {
-    createProject
+    createProject, getProjectsService
 }

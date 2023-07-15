@@ -34,5 +34,6 @@ routerAPI.get('/infor/:id', (req, res) => {
 })
 
 routerAPI.post('/projects', projectController.postCreateProject);
+routerAPI.get('/projects', projectController.getProjects);
 
 module.exports = routerAPI;

@@ -12,8 +12,20 @@ const postCreateProject = async (req, res) => {
     });
 }
 
+const getProjects = async (req, res) => {
+    let { page, limit } = req.query;
+    page = parseInt(page);
+    limit = parseInt(limit);
+    const projects = await projectService.getProjectsService(page, limit);
+    return res.status(200).json({
+        message: 'get projects successfully',
+        total: projects.total,
+        data: projects
+
+    });
+}
 
 
 module.exports = {
-    postCreateProject
+    postCreateProject, getProjects
 }

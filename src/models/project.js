@@ -29,9 +29,9 @@ const projectSchema = new mongoose.Schema(
         endDate: String,
         description: String,
         customerInfor: customerSchema,
-        userInfor: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+        userInfor: [{ type: mongoose.Schema.Types.ObjectId, ref: 'user' }],
         leader: userSchema,
-        tasks: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Task' }],
+        tasks: [{ type: mongoose.Schema.Types.ObjectId, ref: 'task' }],
     },
     { timestamps: true }
 );

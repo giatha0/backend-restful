@@ -37,7 +37,8 @@ const putUpdateProject = async (req, res) => {
 
 const deleteProject = async (req, res) => {
     const { id } = req.body;
-    await projectService.deleteProject(id);
+    console.log('id', id);
+    let project = await projectService.deleteProjectService(id);
     return res.status(200).json({
         message: 'delete project successfully',
         data: project

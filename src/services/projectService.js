@@ -48,12 +48,13 @@ const updateProject = async (data) => {
     return project;
 }
 
-const deleteProject = async (id) => {
-    const project = await Project.deleteOne({ _id: id });
+const deleteProjectService = async (id) => {
+    console.log('id', id);
+    const project = await Project.deleteById({ _id: id });
     console.log('project', project);
     return project;
 }
 
 module.exports = {
-    createProject, getProjectsService, updateProject, deleteProject
+    createProject, getProjectsService, updateProject, deleteProjectService
 }

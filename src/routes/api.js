@@ -2,6 +2,7 @@ const express = require('express');
 const routerAPI = express.Router();
 const apiController = require('../controllers/apiController');
 const customerController = require('../controllers/customerController');
+const projectController = require('../controllers/projectController');
 
 routerAPI.get('/', (req, res) => {
     res.send('Hello World!');
@@ -27,10 +28,11 @@ routerAPI.get('/infor', (req, res) => {
     console.log('req', req.query);
     return res.send('Hello World!');
 })
-
 routerAPI.get('/infor/:id', (req, res) => {
     console.log('req', req.params);
     return res.send('Hello World!');
 })
+
+routerAPI.post('/projects', projectController.postCreateProject);
 
 module.exports = routerAPI;

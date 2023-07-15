@@ -32,7 +32,7 @@ app.use('/v1/api/', apiRoutes);
 (async () => {
     try {
         // using mongoose
-        // await connection();
+        await connection();
 
 
         // using mongodb driver
@@ -56,7 +56,7 @@ app.use('/v1/api/', apiRoutes);
         // collection.insertOne({ number: [1, 2, 3] })
 
         let rs = await collection.find({}).toArray();
-        console.log('rs', rs);
+        // console.log('rs', rs);
 
         app.listen(port, hostname, () => {
             console.log(`Example app listening on port ${port}`)

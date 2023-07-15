@@ -20,6 +20,7 @@ const userSchema = new mongoose.Schema({
 // test mongoose
 const projectSchema = new mongoose.Schema(
     {
+        type: String,
         name: {
             type: String,
             required: true,
@@ -38,7 +39,7 @@ const projectSchema = new mongoose.Schema(
 projectSchema.plugin(mongoose_delete, { overrideMethods: 'all' });
 
 
-const Project = mongoose.model('project', customerSchema);
+const Project = mongoose.model('project', projectSchema);
 
 
 module.exports = Project;

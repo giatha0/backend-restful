@@ -39,6 +39,15 @@ const getProjectsService = async (page, limit) => {
     return { projects, total: projects.length };
 }
 
+const updateProject = async (data) => {
+    const project = await Project.findOneAndUpdate(
+        { _id: data.id },
+        { $set: data },
+    );
+    console.log('project', project);
+    return project;
+}
+
 module.exports = {
-    createProject, getProjectsService
+    createProject, getProjectsService, updateProject
 }

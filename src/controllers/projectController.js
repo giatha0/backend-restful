@@ -25,7 +25,17 @@ const getProjects = async (req, res) => {
     });
 }
 
+const putUpdateProject = async (req, res) => {
+    const data = req.body;
+    console.log('data', data);
+    const project = await projectService.updateProject(data);
+    return res.status(200).json({
+        message: 'update project successfully',
+        data: project
+    });
+}
+
 
 module.exports = {
-    postCreateProject, getProjects
+    postCreateProject, getProjects, putUpdateProject
 }

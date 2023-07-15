@@ -17,13 +17,16 @@ const getTasksService = async (page, limit) => {
 }
 
 const updateTask = async (data) => {
-    const tasks = await Task.findOneAndUpdate(
+
+    const task = await Task.findOneAndUpdate(
         { _id: data.id },
         { $set: data },
         { new: true }
     );
-    return tasks;
+    return task;
 }
+
+
 
 const deleteTaskService = async (id) => {
     const tasks = await Task.deleteById({ _id: id });

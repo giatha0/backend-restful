@@ -37,7 +37,9 @@ const getTasks = async (req, res) => {
 const putUpdateTask = async (req, res) => {
     try {
         const data = req.body;
+        // console.log('data', data);
         const task = await taskService.updateTask(data);
+        console.log('task', task);
         return res.status(200).json({
             success: true,
             data: task

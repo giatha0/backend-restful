@@ -12,10 +12,14 @@ const customerSchema = new mongoose.Schema(
     }
 );
 
+
 const userSchema = new mongoose.Schema({
     email: String,
     name: String,
 });
+
+
+
 
 // test mongoose
 const projectSchema = new mongoose.Schema(

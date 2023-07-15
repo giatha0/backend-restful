@@ -44,6 +44,7 @@ const getProjectsService = async (page, limit) => {
     const projects = await Project.find({})
         .skip((page - 1) * limit)
         .limit(limit)
+        .populate("tasks")
         .populate("userInfor")
         .exec();
 

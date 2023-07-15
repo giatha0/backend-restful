@@ -3,6 +3,7 @@ const routerAPI = express.Router();
 const apiController = require('../controllers/apiController');
 const customerController = require('../controllers/customerController');
 const projectController = require('../controllers/projectController');
+const taskController = require('../controllers/taskController');
 
 routerAPI.get('/', (req, res) => {
     res.send('Hello World!');
@@ -37,5 +38,10 @@ routerAPI.post('/projects', projectController.postCreateProject);
 routerAPI.get('/projects', projectController.getProjects);
 routerAPI.put('/projects', projectController.putUpdateProject);
 routerAPI.delete('/projects', projectController.deleteProject);
+
+routerAPI.post('/tasks', taskController.postCreateTask);
+routerAPI.get('/tasks', taskController.getTasks);
+routerAPI.put('/tasks', taskController.putUpdateTask);
+routerAPI.delete('/tasks', taskController.deleteTask);
 
 module.exports = routerAPI;

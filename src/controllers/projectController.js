@@ -35,7 +35,15 @@ const putUpdateProject = async (req, res) => {
     });
 }
 
+const deleteProject = async (req, res) => {
+    const { id } = req.body;
+    await projectService.deleteProject(id);
+    return res.status(200).json({
+        message: 'delete project successfully',
+        data: project
+    });
+}
 
 module.exports = {
-    postCreateProject, getProjects, putUpdateProject
+    postCreateProject, getProjects, putUpdateProject, deleteProject
 }

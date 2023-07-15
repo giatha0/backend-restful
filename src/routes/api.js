@@ -36,5 +36,6 @@ routerAPI.get('/infor/:id', (req, res) => {
 routerAPI.post('/projects', projectController.postCreateProject);
 routerAPI.get('/projects', projectController.getProjects);
 routerAPI.put('/projects', projectController.putUpdateProject);
+routerAPI.delete('/projects', projectController.deleteProject);
 
 module.exports = routerAPI;

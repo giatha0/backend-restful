@@ -29,6 +29,13 @@ const createProject = async (data) => {
         );
     }
 
+    if (data.type === "ADD-TASK") {
+        myProject = await Project.findOneAndUpdate(
+            { _id: data.projectId },
+            { $push: { tasks: data.taskArr } },
+            { new: true }
+        );
+    }
     // console.log('myProject', myProject);
     return myProject;
 }

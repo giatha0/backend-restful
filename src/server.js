@@ -38,15 +38,15 @@ app.use('/v1/api/', apiRoutes);
 
         // using mongodb driver
         // connection URL
-        const url = process.env.DB_HOST_WITH_DRIVER;
-        const client = new MongoClient(url);
-        const dbName = process.env.DB_NAME;
+        // const url = process.env.DB_HOST_WITH_DRIVER;
+        // const client = new MongoClient(url);
+        // const dbName = process.env.DB_NAME;
 
 
         // await client.connect();
-        console.log('Connected successfully to server');
-        const db = client.db(dbName);
-        const collection = db.collection('customers');
+        // console.log('Connected successfully to server');
+        // const db = client.db(dbName);
+        // const collection = db.collection('customers');
 
 
 
@@ -57,7 +57,7 @@ app.use('/v1/api/', apiRoutes);
         // collection.insertOne({ address: 'hanoi' });
         // collection.insertOne({ number: [1, 2, 3] })
 
-        let rs = await collection.find({}).toArray();
+        // let rs = await collection.find({}).toArray();
         // console.log('rs', rs);
 
         app.listen(port, hostname, () => {

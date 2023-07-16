@@ -7,6 +7,7 @@ const fileUpload = require('express-fileupload');
 const { MongoClient } = require('mongodb');
 
 const connection = require('./config/database');
+const { default: mongoose, mongo } = require('mongoose');
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -41,7 +42,8 @@ app.use('/v1/api/', apiRoutes);
         const client = new MongoClient(url);
         const dbName = process.env.DB_NAME;
 
-        await client.connect();
+
+        // await client.connect();
         console.log('Connected successfully to server');
         const db = client.db(dbName);
         const collection = db.collection('customers');
